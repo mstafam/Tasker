@@ -1,0 +1,57 @@
+.tasks {
+    height: 100vh;
+    background-color: black;
+}
+
+.Page_Container {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    /* height: 60%; */
+}
+
+.Task_Container {
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 8px;
+    margin-bottom: 8px;
+    background-color: #14161A;
+}
+
+.Column_Container {
+    margin: 8px;
+    width: 25%;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: #F0EEEE;
+    display: flex;
+    flex-direction: column;
+}
+
+.Column_Title {
+    padding: 8px;
+}
+
+.TaskList {
+    padding: 8px;
+    flex-grow: 1;
+    min-height: 120px;
+}
+
+.addTaskButton {
+    display: inline;
+}
+
+.deleteTaskButton, .custom_taskContent {
+    display: inline;
+}
+
+.deleteTaskButton {
+    margin-top: 1%;
+    float: right;
+}
+.addTaskButton {
+    float: right;
+    margin-right: 1%;
+}

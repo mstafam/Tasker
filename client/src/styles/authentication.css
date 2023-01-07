@@ -1,0 +1,23 @@
+.custom_container {
+    background-color: #03191E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+form {
+    background-color: white;
+    box-shadow: 5px;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.alert {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    text-align: center;
+}

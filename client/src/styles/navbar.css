@@ -1,0 +1,31 @@
+@font-face {
+    font-family: MPlusRounded;
+    src: url(../assets/MPLUSRounded1c-Black.ttf);
+}
+
+.brand_title {
+    color: white;
+    font-size:35px;
+    font-weight: 900;
+    font-family: MPlusRounded;
+    margin-left: 80%;
+}
+
+.logo {
+    margin-left: 15%;
+}
+
+.custom_links {
+    margin-top: 4%;
+    margin-left: 10%;
+}
+
+.link_family {
+    font-size: 105%;
+    color: white;
+    font-weight: 700;
+}
+
+.custom_account {
+    margin-top: 30%;
+}
