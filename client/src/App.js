@@ -11,6 +11,12 @@ function App() {
   const { user } = useAuthContext()
   // console.log(window.location.href)
   // console.log(user)
+
+  //maybe an if stattemnet for the user is null, if its not then return this and 
+  // navigate them to the home if they go on the loging or singup
+  // amd if it is null, then navigate them to signup if they go another page. 
+  // or do the if statement and if theri is a user do a {user && user...} so it waits for it
+  
   return (
     <>
       <Router>

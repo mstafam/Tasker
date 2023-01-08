@@ -6,6 +6,7 @@ const taskSchema = new Schema({
     content: {
         type: String,
         required: true,
+        maxLength: 110
     },
     category: {
         type: String,

@@ -1,13 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect} from "react";
 import NavbarComp from "../components/navbar.js";
 import Column from "../components/tasks.js";
 import { DragDropContext } from "@hello-pangea/dnd";
-import TaskManagerData from "../taskData";
 import "../styles/tasks.css"
+import { useTasksContext } from "../hooks/useTasksContext"
 
-// Add Dragdrop context here, either in a div, the reaminader of the body, or the entier page comp.
 export default function Tasks() {
-    const [state, setState] = useState(TaskManagerData);
+    const {tasks, dispatch} = useTasksContext()
+
+    useEffect(() => {
+        const getTasks = async () => {
+            const response = await fetch('http://localhost:8080/tasks')
+            const json = await response.json()
+    
+            if(response.ok) {
+                dispatch({type:'GET_TASKS', payload: json})
+            }
+        }
+        getTasks()
+    }, [dispatch])
+
+    const updateTask = async (_id, column) => {
+        const data = { column }
+        
+        const response = await fetch(`http://localhost:8080/tasks/${_id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+        })
+
+        const json = await response.json()
+
+        if(!response.ok) {
+            console.log(json.error)
+        }
+
+        if (response.ok) {
+            console.log(json)
+        }
+    }
 
     const onDragEnd = (result) => {
         const { source, destination, draggableId } = result;
@@ -20,12 +51,11 @@ export default function Tasks() {
             return;
         }
 
-        const startColumn = state.columns[source.droppableId];
-        const endColumn = state.columns[destination.droppableId];
+        const startColumn = tasks.columns[source.droppableId];
+        const endColumn = tasks.columns[destination.droppableId];
 
         if (startColumn === endColumn) {
-            const newTaskIds = Array.from(startColumn.taskIds); //This doesnt mutate the existing state, but makes a new object, 
-            //I probs want to update the state, and set the newstate as the state, and post the new state to the db.
+            const newTaskIds = Array.from(startColumn.taskIds); 
             newTaskIds.splice(source.index, 1);
             newTaskIds.splice(destination.index, 0, draggableId);
     
@@ -35,17 +65,17 @@ export default function Tasks() {
             };
     
             const newState = {
-                ...state,
+                ...tasks,
                 columns: {
-                    ...state.columns,
-                    [newColumn.id]: newColumn
+                    ...tasks.columns,
+                    [newColumn._id]: newColumn
                 }
             }
-    
-            setState(newState);
+            // This doesnt get updated on the server, since tasks dont have an index.
+            dispatch({type:'GET_TASKS', payload: newState})
             return;
-            //Update the server here, do a post with the JSON, update the DB. Do a get request of the JSON everytime the page loads.
         }
+
         const startTaskIds = Array.from(startColumn.taskIds);
         startTaskIds.splice(source.index, 1)
         const newStartColumn = {
@@ -61,15 +91,16 @@ export default function Tasks() {
         }
 
         const newState = {
-            ...state,
+            ...tasks,
             columns: {
-                ...state.columns,
-                [newStartColumn.id]: newStartColumn,
-                [newEndColumn.id] : newEndColumn
+                ...tasks.columns,
+                [newStartColumn._id]: newStartColumn,
+                [newEndColumn._id] : newEndColumn
             }
         }
 
-        setState(newState);
+        updateTask(draggableId, endColumn.title)
+        dispatch({type:'GET_TASKS', payload: newState})
         return;
     }
 
@@ -79,10 +110,10 @@ export default function Tasks() {
             <NavbarComp />
             <DragDropContext onDragEnd={onDragEnd}>
                 <div className="Page_Container">
-                    {state.columnOrder.map(columnId => {
-                        const column = state.columns[columnId];
-                        const tasks = column.taskIds.map(taskId => state.tasks[taskId]);
-                        return <Column key={column.id} column={column} tasks={tasks} />
+                    {tasks && tasks.columnOrder.map(columnId => {
+                        const column = tasks.columns[columnId];
+                        const Tasks = column.taskIds.map(taskId => tasks.tasks[taskId]);
+                        return <Column key={column._id} column={column} tasks={Tasks} />
                     })}
                 </div>
             </DragDropContext>

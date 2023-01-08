@@ -28,7 +28,7 @@ export default function NavbarComp() {
                         <Image className="custom_account" src={AccountPicture} width="40"></Image>
                     }>
                         <NavDropdown.Item disabled>
-                            <strong>user</strong>
+                            <strong>{user && user.username}</strong>
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={handleLogout}>
