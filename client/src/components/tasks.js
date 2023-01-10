@@ -6,9 +6,7 @@ import deleteButton from "../assets/delete.png"
 import closeIcon from "../assets/close.png"
 import Alert from 'react-bootstrap/Alert';
 import { useTasksContext } from "../hooks/useTasksContext";
-import icon1 from "../assets/1icon.png"
-import icon2 from "../assets/2icon.png"
-import icon3 from "../assets/3icon.png"
+import { useAuthContext } from "../hooks/useAuthContext";
 
 function Category(props) {
     if(props.Category === "Home") {
@@ -30,26 +28,18 @@ function Category(props) {
     }
 }
 
-function Priority(props) {
-    if(props.Priority === 1) {
-        return (
-            <img src={icon1} width="25" alt="1st Priority" className="priority_icon" />
-        )
-    } else if (props.Priority === 2) {
-        return (
-            <img src={icon2} width="25" alt="2nd Priority" className="priority_icon" />
-        )
-    } else if (props.Priority === 3) {
-        return (
-            <img src={icon3} width="25" alt="3rd Priority" className="priority_icon" />
-        )
-    }
-}
-
 function Task(props) {
     const { dispatch } = useTasksContext()
+    const {user} = useAuthContext()
+
     const DeleteTask = async (taskId) => {
+
+        if(!user) {
+            return
+        }
+
         const response = await fetch(`http://localhost:8080/tasks/${taskId}`, {
+            headers: { 'Authorization': `Bearer ${user.token}`},
             method: "DELETE"
         })
 
@@ -59,7 +49,9 @@ function Task(props) {
             console.log(json.error)
         }
         if (response.ok) {
-            fetch('http://localhost:8080/tasks')
+            fetch('http://localhost:8080/tasks', {
+                headers: { 'Authorization': `Bearer ${user.token}`}
+            })
             .then(res => res.json())
             .then(json => {dispatch({type:'GET_TASKS', payload: json})})
         }
@@ -69,10 +61,11 @@ function Task(props) {
         <Draggable draggableId={props.task._id} index={props.index}>
             {(provided, snapshot) => (
                 <div className="Task_Container" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                    <Priority Priority={props.task.priority} />
                     <span className="custom_taskContent">{props.task.content}</span>
-                    <input  type="image" src={deleteButton} width="23" onClick={() => {DeleteTask(props.task._id)}} alt="Add Task Button" className="deleteTaskButton"></input>
-                    <Category Category={props.task.category} />
+                    <div className="category-delete">
+                        <Category Category={props.task.category} />
+                        <input  type="image" src={deleteButton} width="23" onClick={() => {DeleteTask(props.task._id)}} alt="Add Task Button" className="deleteTaskButton"></input>
+                    </div>
                 </div>
             )}
         </Draggable>
@@ -88,6 +81,7 @@ export default function Column(props) {
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
     const { dispatch } = useTasksContext()
+    const { user } = useAuthContext()
 
     const toggleModal = () => {
         setModal(!modal)
@@ -97,11 +91,17 @@ export default function Column(props) {
 
     const addTaskFormSubmit = async (e) => {
         e.preventDefault();
+
+        if(!user) {
+            setError('You must be logged in')
+            return
+        }
+
         const task = {content, category, priority, column}
 
         const response = await fetch('http://localhost:8080/tasks', {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type": "application/json", 'Authorization': `Bearer ${user.token}`},
             body: JSON.stringify(task)
         })
 
@@ -119,7 +119,9 @@ export default function Column(props) {
             setError(null)
             setSuccess("New Task Added!")
             setTimeout(toggleModal, 500)
-            fetch('http://localhost:8080/tasks')
+            fetch('http://localhost:8080/tasks', {
+                headers: { 'Authorization': `Bearer ${user.token}`}
+            })
             .then(res => res.json())
             .then(json => {dispatch({type:'GET_TASKS', payload: json})})
         }

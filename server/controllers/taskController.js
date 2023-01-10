@@ -4,7 +4,9 @@ const mongoose = require('mongoose')
 
 // GET all tasks
 const getTasks = async (req, res) => {
-    const tasks = await Task.find({}).sort({priority: 1})
+    const user_id = req.user._id
+
+    const tasks = await Task.find({ user_id }).sort({priority: 1})
 
     const TaskObject = {
         tasks: {},
@@ -52,7 +54,8 @@ const createTask = async (req, res) => {
     const { content, category, priority, column } = req.body
 
     try {
-        const task = await Task.create({ content, category, priority, column})
+        const user_id  = req.user._id
+        const task = await Task.create({ content, category, priority, column, user_id})
         res.status(200).json(task)
     } catch (error) {
         res.status(400).json({error: error.message})

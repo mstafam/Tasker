@@ -13,11 +13,17 @@ export default function SignUp() {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
     const { dispatch } = useAuthContext()
-
+    
     const handleSubmit = async (e) => {
         setIsLoading(true)
         setError(null)
         e.preventDefault()
+
+        if(!(password === confirmPassword)) {
+            setIsLoading(false)
+            return setError("Passwords do not match")
+        }
+
         const response = await fetch('http://localhost:8080/user/signup', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -42,6 +48,7 @@ export default function SignUp() {
             <div className="color-overlay d-flex justify-content-center align-items-center">
                 <Form onSubmit={handleSubmit} className="rounded p-4 p-sm-3">
                     <Form.Group className="mb-3" controlId="formUsername">
+                        <h1 className="form-header">Sign Up</h1>
                         <Form.Label>Username</Form.Label>
                         <Form.Control type="username" placeholder="Enter Username" onChange={(e) => setUsername(e.target.value)} value={username} required />
                     </Form.Group>
@@ -57,7 +64,9 @@ export default function SignUp() {
                         <Form.Label>Confirm Password</Form.Label>
                         <Form.Control type="password" placeholder="Confirm Password" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} required />
                     </Form.Group>
-                    <Button variant="primary" type="submit" disabled={isLoading}>Sign Up</Button>
+                    <div className="d-grid gap-2">
+                        <Button variant="dark" type="submit" disabled={isLoading}>Sign Up</Button>
+                    </div>
                     <Form.Group>
                         <Form.Text>Already have an account? <a href="/login" className="link-primary">Log In</a></Form.Text>
                     </Form.Group>

@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from 'react'
+import { createContext, useReducer, useEffect, useMemo } from 'react'
 
 export const AuthContext = createContext()
 
@@ -18,13 +18,16 @@ export const AuthContextProvider = ( { children }) => {
         user: null
     })
 
+    const storedUser = useMemo(() => localStorage.getItem('user'), [])
+    
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'))
         
         if(user) {
             dispatch({type: "LOGIN", payload: user})
         }
-    }, [])
+
+    }, [storedUser])
     
     console.log('AuthContext state: ', state)
 

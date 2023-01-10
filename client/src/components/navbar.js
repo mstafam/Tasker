@@ -5,16 +5,17 @@ import Image from "react-bootstrap/Image";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import AccountPicture from "../assets/account.png";
 import LogoutIcon from "../assets/logout.png";
-import { useLogout } from "../hooks/useLogout.js"
 import { useAuthContext } from "../hooks/useAuthContext.js";
-import "../styles/navbar.css"
+import { useTasksContext } from "../hooks/useTasksContext"
+import "../styles/navbar.css";
 
 export default function NavbarComp() {
-    const { logout } = useLogout()
-    const { user } = useAuthContext()
-
+    const { user, dispatch } = useAuthContext()
+    const { dispatch: tasksDispatch } = useTasksContext()
     const handleLogout = () => {
-        logout()
+        localStorage.removeItem('user')
+        tasksDispatch({type: "GET_TASKS", payload: null})
+        dispatch({type: 'LOGOUT'})
     }
     
     return(
@@ -28,7 +29,7 @@ export default function NavbarComp() {
                         <Image className="custom_account" src={AccountPicture} width="40"></Image>
                     }>
                         <NavDropdown.Item disabled>
-                            <strong>{user && user.username}</strong>
+                            <strong className="Username">{user && user.username}</strong>
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={handleLogout}>

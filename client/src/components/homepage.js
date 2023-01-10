@@ -1,7 +1,7 @@
 import React from "react"
 import "../styles/home.css"
 import homeImage from "../assets/homepage.png"
-import Button from "react-bootstrap/Button"
+import { Container, Row, Col, Image, Button } from "react-bootstrap"
 
 export default function HomePage(props) {
 
@@ -28,4 +28,8 @@ export default function HomePage(props) {
             </>
         )
     }
+
+    //Breakpoint at 1480px
+    // The text goes on top, with the button under the text, adn then image under.
+    // Then the smaller it gets the text just stretches lower, and the pix adjusts, make black space around the image and when its the smallest screen size, it fits the whole page.
 }

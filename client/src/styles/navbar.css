@@ -3,6 +3,12 @@
     src: url(../assets/MPLUSRounded1c-Black.ttf);
 }
 
+.Username {
+    color: black;
+    font-size: 17px;
+    font-weight: 800;
+}
+
 .brand_title {
     color: white;
     font-size:35px;

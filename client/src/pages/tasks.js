@@ -4,28 +4,39 @@ import Column from "../components/tasks.js";
 import { DragDropContext } from "@hello-pangea/dnd";
 import "../styles/tasks.css"
 import { useTasksContext } from "../hooks/useTasksContext"
+import { useAuthContext } from "../hooks/useAuthContext.js";
 
 export default function Tasks() {
     const {tasks, dispatch} = useTasksContext()
+    const {user} = useAuthContext()
 
     useEffect(() => {
         const getTasks = async () => {
-            const response = await fetch('http://localhost:8080/tasks')
+            const response = await fetch('http://localhost:8080/tasks', {
+                headers: { 'Authorization': `Bearer ${user.token}`}
+            })
             const json = await response.json()
     
             if(response.ok) {
                 dispatch({type:'GET_TASKS', payload: json})
             }
         }
-        getTasks()
-    }, [dispatch])
+        if(user) {
+            getTasks()
+        }
+    }, [dispatch, user])
 
     const updateTask = async (_id, column) => {
+
+        if(!user) {
+            return
+        }
+
         const data = { column }
         
         const response = await fetch(`http://localhost:8080/tasks/${_id}`, {
             method: "PATCH",
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type": "application/json", 'Authorization': `Bearer ${user.token}`},
             body: JSON.stringify(data)
         })
 

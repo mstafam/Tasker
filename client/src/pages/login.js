@@ -39,6 +39,7 @@ export default function Login() {
                 <div className="color-overlay d-flex justify-content-center align-items-center">
                     <Form onSubmit={handleSubmit} className="rounded p-4 p-sm-3">
                         <Form.Group className="mb-3" controlId="formUsername">
+                            <h1 className="form-header">Log In</h1>
                             <Form.Label>Username</Form.Label>
                             <Form.Control type="username" placeholder="Enter Username" onChange={(e) => setUsername(e.target.value)} value={username} required />
                         </Form.Group>
@@ -46,7 +47,9 @@ export default function Login() {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)} value={password} required />
                         </Form.Group>
-                        <Button variant="primary" type="submit" disabled={isLoading}>Log In</Button>
+                        <div className="d-grid gap-2">
+                            <Button variant="dark" type="submit" disabled={isLoading}>Log In</Button>
+                        </div>
                         <Form.Group>
                             <Form.Text>Don't have an account? <a href="/signup" className="link-primary">Sign Up</a></Form.Text>
                         </Form.Group>

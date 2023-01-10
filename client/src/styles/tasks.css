@@ -6,28 +6,40 @@
 }
 
 .tasks {
-    height: 100vh;
+    height: 100vh; 
     background-color: black;
-}
+} 
 
 .Page_Container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    background-color: black;
 }
 
 .Task_Container {
-    display: absolute;
+    display: flex;
+    flex-wrap: wrap;
     color: white;
     border: 1px solid white;
     border-radius: 10px;
     padding: 8px;
     margin-bottom: 8px;
     background-color: #14161A;
+    overflow: hidden; 
+}
+
+.category-delete {
+    position: relative;
+    display: inline;
+    float: right;
+    margin-left: auto; 
+    margin-right: 0;
 }
 
 .Column_Container {
     margin: 8px;
-    width: 25%;
+    width: 500px;
     border: 2px solid white;
     border-radius: 10px;
     background-color: #F0EEEE;
@@ -55,7 +67,8 @@
 .deleteTaskButton {
     float: right;
     margin-right: 5px;
-}
+} 
+
 .addTaskButton {
     float: right;
     margin-right: 1%;
@@ -75,7 +88,6 @@
     width: 90px;
     text-align: center;
     font-family: MPlusRounded;
-    float: right;
     margin: 0 1em;
 }
 
@@ -86,7 +98,6 @@
     width: 90px;
     text-align: center;
     font-family: MPlusRounded;
-    float: right;
     margin: 0 1em;
 }
 
@@ -97,7 +108,6 @@
     width: 90px;
     text-align: center;
     font-family: MPlusRounded;
-    float: right;
     margin: 0 1em;
 }
 
@@ -108,17 +118,17 @@
     width: 90px;
     text-align: center;
     font-family: MPlusRounded;
-    float: right;
     margin: 0 1em;
 }
 
 .form-modal {
     position: absolute;
     background-color: white;
-    width: calc(100vw - 80%);
-    height: calc(100vh - 70%);
+    width: 400px;
+    height: 400px;
     border-radius: 10px;
     margin-top: 2%;
+    z-index: 1;
 }
 
 .form-overlay {
@@ -211,9 +221,4 @@ select {
 
 select > option {
     font-family: rubik;
-}
-
-.priority_icon {
-    float: left;
-    margin-right: 2%;
 }

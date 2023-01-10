@@ -9,14 +9,18 @@ export default function NavbarComp(props) {
     if(!props.isLoggedIn) {
         return(
             <>
-                <Navbar collapseOnSelect expand="lg" bg="black" variant="dark" id="nav">
+                <Navbar collapseOnSelect bg="black" variant="dark" id="nav">
                     <Container fluid>
                         <Navbar.Brand href="#">
                         <span className="brand_title">Tasker</span>
                         </Navbar.Brand>
-                        <Nav className="pull-right">
+                        <Nav className="ml-auto">
+                            <Nav.Item>
                             <Button variant="light" href="/login" className="me-3 custom_button" ><strong>Log In</strong></Button>{' '}
+                            </Nav.Item>
+                            <Nav.Item>
                             <Button variant="light" href="/signup" className="me-3 custom_button"><strong>Sign Up</strong></Button>
+                            </Nav.Item>
                         </Nav>
                     </Container>
                 </Navbar>
@@ -30,12 +34,9 @@ export default function NavbarComp(props) {
                         <Navbar.Brand href="#">
                             <span className="brand_title">Tasker</span>
                         </Navbar.Brand>
-                        {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                        <Navbar.Collapse id="responsive-navbar-nav"> */}
                         <Nav className="pull-right">
                             <Button variant="light" href="/tasks" className="me-3 custom_button"><strong>Tasks</strong></Button>
                         </Nav>
-                        {/* </Navbar.Collapse> */}
                     </Container>
                 </Navbar>
             </>

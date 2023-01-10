@@ -22,6 +22,10 @@ const taskSchema = new Schema({
         type: String,
         required: true,
         select: ["To Do", "In Progress", "Completed"]
+    },
+    user_id: {
+        type: String,
+        required: true
     }
 }, { timestamps: true})
 
