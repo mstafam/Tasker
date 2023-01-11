@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.js';
-import { AuthContextProvider } from "./AuthContext.js";
-import { TaskContextProvider } from './taskContext.js';
+import App from './App';
+import { AuthContextProvider } from "./AuthContext";
+import { TaskContextProvider } from './taskContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

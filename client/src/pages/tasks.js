@@ -1,10 +1,10 @@
 import React, { useEffect} from "react";
-import NavbarComp from "../components/navbar.js";
-import Column from "../components/tasks.js";
+import NavbarComp from "../components/navbar";
+import Column from "../components/tasks";
 import { DragDropContext } from "@hello-pangea/dnd";
 import "../styles/tasks.css"
 import { useTasksContext } from "../hooks/useTasksContext"
-import { useAuthContext } from "../hooks/useAuthContext.js";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function Tasks() {
     const {tasks, dispatch} = useTasksContext()
@@ -82,7 +82,6 @@ export default function Tasks() {
                     [newColumn._id]: newColumn
                 }
             }
-            // This doesnt get updated on the server, since tasks dont have an index.
             dispatch({type:'GET_TASKS', payload: newState})
             return;
         }

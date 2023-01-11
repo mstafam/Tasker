@@ -5,7 +5,7 @@ export default function My404Page() {
         <>
             <h1>404 Error</h1>
             <p>Page does not exist</p>
-            <a href="/">Go back to home page</a>
+            <a href="/">Go back to the home page</a>
         </>
     )
 }

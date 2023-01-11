@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import Home from "./pages/home.js";
-import My404Page from "./pages/error404page.js";
-import Tasks from "./pages/tasks.js";
-import Login from "./pages/login.js";
-import SignUp from "./pages/signup.js";
+import Home from "./pages/home";
+import My404Page from "./pages/error404page";
+import Tasks from "./pages/tasks";
+import Login from "./pages/login";
+import SignUp from "./pages/signup";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useAuthContext } from "./hooks/useAuthContext.js";
+import { useAuthContext } from "./hooks/useAuthContext";
 import { useEffect, useState } from "react";
 
 function App() {

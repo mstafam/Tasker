@@ -7,7 +7,7 @@ export default function HomePage(props) {
 
     if(props.isLoggedIn) {
         return (
-            <div className="trial_container">
+            <div className="page_container">
                 <div className="container_1">
                     <h1>Your One-Stop Solution for <span className="managing">Managing</span> and <span className="organizing">Organizing</span> Your Tasks</h1>
                     <h3>Tasker allows you to effortlessly manage your tasks and stay organized. Now you can prioritize your work, stay focused, and get things done efficiently.</h3>
@@ -18,7 +18,7 @@ export default function HomePage(props) {
         )
     } else {
         return (
-            <div className="trial_container">
+            <div className="page_container">
                 <div className="container_1">
                     <h1>Your One-Stop Solution for <span className="managing">Managing</span> and <span className="organizing">Organizing</span> Your Tasks</h1>
                     <h3>Tasker allows you to effortlessly manage your tasks and stay organized. Now you can prioritize your work, stay focused, and get things done efficiently.</h3>

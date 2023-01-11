@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/authentication.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
-import { useAuthContext } from "../hooks/useAuthContext.js";
+import { useAuthContext } from "../hooks/useAuthContext";
 import Alert from 'react-bootstrap/Alert';
 
 export default function SignUp() {

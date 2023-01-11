@@ -73,10 +73,10 @@ function Task(props) {
 }
 
 export default function Column(props) {
-    const [content, setContent] = useState('') // required
-    const [category, setCategory] = useState('Home') //required
-    const [priority, setPriority] = useState(1) //required
-    const [column, setColumn] = useState('To Do') // required
+    const [content, setContent] = useState('')
+    const [category, setCategory] = useState('Home')
+    const [priority, setPriority] = useState(1)
+    const [column, setColumn] = useState('To Do')
     const [modal, setModal] = useState(false)
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)

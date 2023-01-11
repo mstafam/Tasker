@@ -37,7 +37,7 @@
 }
 
 
-.trial_container {
+.page_container {
     display: flex;
     align-content: center;
     justify-content: center;
@@ -110,7 +110,7 @@
 }
 
 @media (max-width: 1300px) {
-    .trial_container {
+    .page_container {
         flex-direction: column;
         justify-content: center;
         align-items: center;

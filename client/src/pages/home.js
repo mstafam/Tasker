@@ -1,5 +1,5 @@
 import React from "react"
-import NavbarComp from "../components/homenavbar.js"
+import NavbarComp from "../components/homenavbar"
 import "../styles/home.css"
 import HomePage from "../components/homepage"
 export default function Home(props) {

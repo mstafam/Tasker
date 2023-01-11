@@ -5,7 +5,7 @@ import Image from "react-bootstrap/Image";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import AccountPicture from "../assets/account.png";
 import LogoutIcon from "../assets/logout.png";
-import { useAuthContext } from "../hooks/useAuthContext.js";
+import { useAuthContext } from "../hooks/useAuthContext";
 import { useTasksContext } from "../hooks/useTasksContext"
 import "../styles/navbar.css";
 
