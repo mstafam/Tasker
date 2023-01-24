@@ -24,7 +24,7 @@ export default function SignUp() {
             return setError("Passwords do not match")
         }
 
-        const response = await fetch('http://localhost:8080/user/signup', {
+        const response = await fetch('https://tasker-5g7e.onrender.com/user/signup', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({username, email, password})

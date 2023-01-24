@@ -12,7 +12,7 @@ export default function Tasks() {
 
     useEffect(() => {
         const getTasks = async () => {
-            const response = await fetch('http://localhost:8080/tasks', {
+            const response = await fetch('https://tasker-5g7e.onrender.com/tasks', {
                 headers: { 'Authorization': `Bearer ${user.token}`}
             })
             const json = await response.json()
@@ -34,7 +34,7 @@ export default function Tasks() {
 
         const data = { column }
         
-        const response = await fetch(`http://localhost:8080/tasks/${_id}`, {
+        const response = await fetch(`https://tasker-5g7e.onrender.com/tasks/${_id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json", 'Authorization': `Bearer ${user.token}`},
             body: JSON.stringify(data)

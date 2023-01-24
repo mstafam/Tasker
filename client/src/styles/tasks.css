@@ -125,7 +125,7 @@
     position: absolute;
     background-color: white;
     width: 400px;
-    height: 400px;
+    height: 375px;
     border-radius: 10px;
     margin-top: 2%;
     z-index: 1;
@@ -139,7 +139,7 @@
 }
 
 .taskForm {
-    border-radius: 10px;
+    border-radius: 0px 0px 10px 10px;
 }
 
 .taskForm > h3 {
@@ -184,10 +184,10 @@
 
 .modal-header {
     position: relative;
-    width: 100%;
+    width: 101%;
+    right: 2px;
     height: 75px;
     background-color: #14161A;
-    margin-bottom: 3%;
     color: white;
     font-family: MPlusRounded;
     justify-content: center;

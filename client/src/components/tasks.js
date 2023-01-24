@@ -38,7 +38,7 @@ function Task(props) {
             return
         }
 
-        const response = await fetch(`http://localhost:8080/tasks/${taskId}`, {
+        const response = await fetch(`https://tasker-5g7e.onrender.com/tasks/${taskId}`, {
             headers: { 'Authorization': `Bearer ${user.token}`},
             method: "DELETE"
         })
@@ -49,7 +49,7 @@ function Task(props) {
             console.log(json.error)
         }
         if (response.ok) {
-            fetch('http://localhost:8080/tasks', {
+            fetch('https://tasker-5g7e.onrender.com/tasks', {
                 headers: { 'Authorization': `Bearer ${user.token}`}
             })
             .then(res => res.json())
@@ -99,7 +99,7 @@ export default function Column(props) {
 
         const task = {content, category, priority, column}
 
-        const response = await fetch('http://localhost:8080/tasks', {
+        const response = await fetch('https://tasker-5g7e.onrender.com/tasks', {
             method: "POST",
             headers: {"Content-Type": "application/json", 'Authorization': `Bearer ${user.token}`},
             body: JSON.stringify(task)
@@ -119,7 +119,7 @@ export default function Column(props) {
             setError(null)
             setSuccess("New Task Added!")
             setTimeout(toggleModal, 500)
-            fetch('http://localhost:8080/tasks', {
+            fetch('https://tasker-5g7e.onrender.com/tasks', {
                 headers: { 'Authorization': `Bearer ${user.token}`}
             })
             .then(res => res.json())
