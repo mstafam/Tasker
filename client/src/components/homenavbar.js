@@ -11,9 +11,9 @@ export default function NavbarComp(props) {
             <>
                 <Navbar collapseOnSelect bg="black" variant="dark" id="nav">
                     <Container fluid>
-                        <Navbar.Brand href="#">
-                        <span className="brand_title">Tasker</span>
-                        </Navbar.Brand>
+                            <Navbar.Brand href="#">
+                                <span className="brand_title">Tasker</span>
+                            </Navbar.Brand>
                         <Nav className="ml-auto">
                             <Nav.Item>
                             <Button variant="light" href="/login" className="me-3 custom_button" ><strong>Log In</strong></Button>{' '}
@@ -31,7 +31,7 @@ export default function NavbarComp(props) {
             <>
                 <Navbar collapseOnSelect expand="lg" bg="black" variant="dark" id="nav">
                     <Container fluid>
-                        <Navbar.Brand href="#">
+                        <Navbar.Brand href="#" className="ml-auto"> 
                             <span className="brand_title">Tasker</span>
                         </Navbar.Brand>
                         <Nav className="pull-right">
