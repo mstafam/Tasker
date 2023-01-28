@@ -24,10 +24,10 @@ function App() {
       <>
         <Router>
             <Routes>
-                <Route path="/Tasker/" element={<Home user={user}/>}></Route>
-                <Route path="/Tasker/tasks" element={user ? <Tasks /> : <Navigate to="/login"/>}></Route>
-                <Route path="/Tasker/login" element={!user ? <Login /> : <Navigate to="/tasks"/>}></Route>
-                <Route path="/Tasker/signup" element={!user ? <SignUp /> : <Navigate to="/tasks"/>}></Route>
+                <Route path="/" element={<Home user={user}/>}></Route>
+                <Route path="/tasks" element={user ? <Tasks /> : <Navigate to="/login"/>}></Route>
+                <Route path="/login" element={!user ? <Login /> : <Navigate to="/tasks"/>}></Route>
+                <Route path="/signup" element={!user ? <SignUp /> : <Navigate to="/tasks"/>}></Route>
                 <Route path="*" element={<My404Page />}></Route>
             </Routes>
         </Router>
