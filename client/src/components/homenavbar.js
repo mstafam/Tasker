@@ -31,11 +31,7 @@ export default function NavbarComp(props) {
             <>
                 <Navbar collapseOnSelect expand="lg" bg="black" variant="dark" id="nav">
                     <Container fluid>
-<<<<<<< Updated upstream
-                        <Navbar.Brand href="#" className="ml-auto"> 
-=======
                         <Navbar.Brand href="#" className="ml-auto">
->>>>>>> Stashed changes
                             <span className="brand_title">Tasker</span>
                         </Navbar.Brand>
                         <Nav className="pull-right">
