@@ -32,7 +32,7 @@ export default function NavbarComp(props) {
                 <Navbar collapseOnSelect expand="lg" bg="black" variant="dark" id="nav">
                     <Container fluid>
                         <Navbar.Brand href="#" className="ml-auto"> 
-                            <span className="brand_title">Tasker</span>
+                        <span className="brand_title">Tasker</span>
                         </Navbar.Brand>
                         <Nav className="pull-right">
                             <Button variant="light" href="/tasks" className="me-3 custom_button"><strong>Tasks</strong></Button>

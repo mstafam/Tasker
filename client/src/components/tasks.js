@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Droppable, Draggable } from "@hello-pangea/dnd"
+import { Droppable, Draggable } from "@hello-pangea/dnd";
 import "../styles/tasks.css"
 import addButton from "../assets/addButton.png"
 import deleteButton from "../assets/delete.png"
